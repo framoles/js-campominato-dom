@@ -21,6 +21,10 @@
     background-color: rgb(78, 154, 177);
 }
 
+.bg-red{
+    background-color: rgb(223, 35, 35);
+}
+
 .lvlEasy{
     width: calc(100% / 10);
     height: calc(100% / 10);

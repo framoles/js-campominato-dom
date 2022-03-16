@@ -16,28 +16,49 @@ btnHard.addEventListener("click", () => playGrid(49, "lvlHard"));
 function playGrid(maxCells, level) {
     const gridBox = document.getElementById("box");
     gridBox.innerHTML = "";
+    const bombNum = bomb(maxCells);
     for (let i = 0; i < maxCells; i++) {
         const cells = createCells();
         cells.classList.add(level);
         cells.innerHTML = i + 1;
         gridBox.appendChild(cells);
+
+        cells.addEventListener("click", function () {
+
+            if (bombNum.includes(i + 1)) {
+                cells.classList.add("bg-red");
+                alert("Hai perso");
+                gridBox.innerHTML = "";
+            }
+            else {
+                cells.classList.add("bg-click");
+            }
+
+        })
     }
-    const main = bomb(maxCells);
-    console.log(main);
+
+    console.log(bombNum);
+
 
 }
 
 function createCells() {
     const cell = document.createElement("div");
     cell.classList.add("cell");
-    cell.addEventListener("click", () => { cell.classList.toggle("bg-click") });
     return cell;
 }
 
 function bomb(lvlCells) {
     let randNumber = [];
+    let num = 0;
     for (let i = 0; i < 16; i++) {
-        randNumber.push(Math.floor(Math.random() * lvlCells) + 1);
+        num = (Math.floor(Math.random() * lvlCells) + 1);
+        if (!randNumber.includes(num)) {
+            randNumber.push(num);
+        }
+        else {
+            i--;
+        }
     }
     return randNumber;
 }
