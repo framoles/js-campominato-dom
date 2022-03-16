@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#box{
+    width: 500px;
+    height: 500px;
+    background-color: rgb(214, 230, 245);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cell{
+    background-color: rgb(167, 93, 93);
+    border: 1px solid black;
+}
+
+.bg-click{
+    background-color: rgb(78, 154, 177);
+}
+
+.lvlEasy{
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+}
+
+.lvlMed{
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+}
+
+.lvlHard{
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+}
