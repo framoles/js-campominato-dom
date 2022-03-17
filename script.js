@@ -1,6 +1,9 @@
 const playBtn = document.getElementById("play");
 playBtn.addEventListener("click", () => startGame());
 
+const pointCointainer = document.getElementById("points-container");
+const gridBox = document.getElementById("box");
+
 function startGame() {
     createGrid();
     clickEvent();
@@ -26,9 +29,12 @@ function difficulty() {
 function createGrid() {
     const maxCells = difficulty().num;
     const levelName = difficulty().level;
-    const gridBox = document.getElementById("box");
     gridBox.innerHTML = "";
     gridBox.classList.remove("lose");
+    pointCointainer.classList.remove("d-block");
+    pointCointainer.classList.add("d-none");
+
+
     for (let i = 0; i < maxCells; i++) {
         const cell = document.createElement("div");
         cell.classList.add("cell");
@@ -42,16 +48,17 @@ function clickEvent() {
     const bombNumbers = createBombs();
     console.log(bombNumbers);
     const totalCell = document.querySelectorAll(".cell");
-    const gridBox = document.getElementById("box");
     let points = 0;
     let clicked = [];
+    let message;
 
     for (let i = 0; i < totalCell.length; i++) {
         totalCell[i].addEventListener("click", function () {
             if (bombNumbers.includes(i + 1)) {
                 showAllBombs(bombNumbers);
                 gridBox.classList.add("lose");
-                alert("Hai perso! Sei riuscito a fare: " + points + " punti!");
+                message = "Hai perso! Hai totalizzato: " + points + " punti"
+                pointsShow(message);
             }
             else {
                 if (!clicked.includes(i + 1)) {
@@ -61,7 +68,8 @@ function clickEvent() {
                         points++;
                     }
                     else {
-                        youWin();
+                        message = "Congratulazioni! Hai vinto"
+                        pointsShow(message);
                     }
                 }
             }
@@ -93,6 +101,10 @@ function showAllBombs(allBomb) {
     }
 }
 
-function youWin() {
-    alert("Hai vinto");
+function pointsShow(statement) {
+    pointer = document.getElementById("point-states");
+    pointer.innerHTML = statement;
+
+    pointCointainer.classList.remove("d-none");
+    pointCointainer.classList.add("d-block");
 }

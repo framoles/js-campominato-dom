@@ -43,3 +43,19 @@
 .lose{
     pointer-events: none;
 }
+
+.d-block
+{
+    display: block;
+}
+
+.d-none{
+    display: none;
+}
+
+#points-container{
+    padding: 20px;
+    width: 500px;
+    background-color: aqua;
+    border: 1px solid black;
+}
